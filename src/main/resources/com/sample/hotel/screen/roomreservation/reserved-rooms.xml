@@ -1,16 +1,25 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <window xmlns="http://jmix.io/schema/ui/window"
-        xmlns:c="http://jmix.io/schema/ui/jpql-condition"
         caption="msg://roomReservationBrowse.caption"
         focusComponent="roomReservationsTable">
     <data readOnly="true">
         <collection id="roomReservationsDc"
                     class="com.sample.hotel.entity.RoomReservation">
-            <fetchPlan extends="_base">
-                <property name="booking" fetchPlan="_base">
-                    <property name="client" fetchPlan="_base"/>
+            <fetchPlan extends="_local">
+                <property name="booking">
+                    <property name="client">
+                        <property name="telephone"/>
+                        <property name="firstName"/>
+                        <property name="lastName"/>
+                    </property>
+                    <property name="numberOfGuests"/>
+                    <property name="arrivalDate"/>
+                    <property name="departureDate"/>
                 </property>
-                <property name="room" fetchPlan="_base"/>
+                <property name="room">
+                    <property name="number"/>
+                    <property name="floor"/>
+                </property>
             </fetchPlan>
             <loader id="roomReservationsDl">
                 <query>
